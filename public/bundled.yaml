@@ -4,9 +4,9 @@ info:
   version: 1.0.0
 servers:
   - url: http://localhost:3000
-  - description: Local development servers
+    description: Local development servers
   - url: https://task-api-kg3b.onrender.com
-  - description: Production server on render
+    description: Production server on render
 tags:
   - name: Tasks
     description: Task-related endpoints
@@ -59,6 +59,38 @@ paths:
                 $ref: '#/components/schemas/Task'
         '400':
           $ref: '#/components/responses/BadRequest'
+  /tasks/{id}:
+    get:
+      summary: Get a task by ID
+      tags:
+        - Tasks
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the task
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: Task found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '400':
+          description: ID must be a number
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+        '404':
+          description: Task not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
 components:
   schemas:
     Task:
