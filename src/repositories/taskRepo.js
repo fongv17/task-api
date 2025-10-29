@@ -11,6 +11,8 @@ export async function create(data) {
   });
 }
 
-export async function findTask() {
-  return prisma.task.findUnique();
+export async function findTask(id) {
+  return prisma.task.findUnique({
+    where: { id },
+  });
 }
