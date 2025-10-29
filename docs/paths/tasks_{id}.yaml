@@ -22,7 +22,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/ValidationError.yaml
+            $ref: ../components/schemas/BadRequest.yaml
     '404':
       description: Task not found
       content:
